@@ -1,0 +1,397 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14229,        389]
+NotebookOptionsPosition[     13648,        371]
+NotebookOutlinePosition[     14052,        387]
+CellTagsIndexPosition[     14009,        384]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{
+    StyleBox["Rosenbrock",
+     FontWeight->"Bold"], ",", 
+    StyleBox["Schwefel",
+     FontWeight->"Bold"]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    StyleBox["Rosenbrock",
+     FontWeight->"Bold"], "[", 
+    RowBox[{"{", 
+     RowBox[{"x1_", ",", "x2_"}], "}"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"1", "-", "#1"}], ")"}], "2"], "+", 
+        RowBox[{"100", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{"#2", "-", 
+            SuperscriptBox["#1", "2"]}], ")"}], "2"]}]}], "&"}], "[", 
+      RowBox[{
+       RowBox[{"0.02048", "x1"}], ",", 
+       RowBox[{"0.02048", "x2"}]}], "]"}], ")"}], "/", "400."}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    StyleBox["Schwefel",
+     FontWeight->"Bold"], "[", 
+    RowBox[{"{", 
+     RowBox[{"x1_", ",", "x2_"}], "}"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "#1"}], " ", 
+         RowBox[{"Sin", "@", 
+          SqrtBox[
+           RowBox[{"Abs", "@", "#1"}]]}]}], "-", 
+        RowBox[{"#2", " ", 
+         RowBox[{"Sin", "@", 
+          SqrtBox[
+           RowBox[{"Abs", "@", "#2"}]]}]}]}], "&"}], "[", 
+      RowBox[{
+       RowBox[{"5.1203", "x1"}], ",", 
+       RowBox[{"5.1203", "x2"}]}], "]"}], ")"}], "/", "90."}]}], 
+  ";"}]}], "Input",
+ CellLabel->
+  "In[578]:=",ExpressionUUID->"a897d763-68d7-46bc-9d51-8dea6b4ceb65"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "1. ",
+ StyleBox["\:0420\:043e\:0439 \:0447\:0430\:0441\:0442\:0438\:0446.",
+  FontFamily->"Monotype Corsiva",
+  FontSize->18,
+  FontWeight->"Bold",
+  FontSlant->"Italic"]
+}], "Section",
+ CellChangeTimes->{{3.8632047294716635`*^9, 
+  3.8632047301746078`*^9}},ExpressionUUID->"4ff530ed-9bde-4c9b-a764-\
+20ae4b310fee"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   StyleBox["kmSwarm",
+    FontWeight->"Bold"], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    StyleBox["kmSwarm",
+     FontWeight->"Bold"], "::", "\"\<usage\>\""}], " ", "=", " ", 
+   "\"\<\:041f\:043e\:043f\:0443\:043b\:044f\:0446\:0438\:044f, \:0440\:0435\
+\:0430\:043b\:0438\:0437\:0443\:044e\:0449\:0430\:044f \:0430\:043b\:0433\
+\:043e\:0440\:0438\:0442\:043c \:043e\:043f\:0442\:0438\:043c\:0438\:0437\
+\:0430\:0446\:0438\:0438 \:043c\:0435\:0442\:043e\:0434\:043e\:043c \:0440\
+\:043e\:044f \:0447\:0430\:0441\:0442\:0438\:0446\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{
+     StyleBox["kmSwarm",
+      FontWeight->"Bold"], ",", 
+     RowBox[{"{", 
+      RowBox[{"HoldAllComplete", ",", " ", "ReadProtected"}], "}"}]}], "]"}], 
+   ";"}], 
+  StyleBox["\n",
+   FontSize->12,
+   FontWeight->"Bold",
+   FontColor->RGBColor[0, 0, 1]], 
+  StyleBox[
+   RowBox[{"(*", "*****************************)"}],
+   FontSize->12,
+   FontWeight->"Bold",
+   FontColor->RGBColor[0, 0, 1]], "\n", 
+  StyleBox[
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "**", " ", 
+      "\:041a\:043e\:043d\:0441\:0442\:0440\:0443\:043a\:0442\:043e\:0440"}], 
+     " ", "\:0440\:043e\:044f", " ", "\:0447\:0430\:0441\:0442\:0438\:0446"}],
+     " ", "***)"}],
+   FontSize->12,
+   FontWeight->"Bold",
+   FontColor->RGBColor[0, 0, 1]]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     StyleBox["kmSwarm",
+      FontWeight->"Bold"], "[", 
+     RowBox[{"\"\<Init\>\"", ",", 
+      RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", " ", 
+    RowBox[{"Association", "[", " ", 
+     StyleBox[
+      RowBox[{"(*", 
+       RowBox[{"**", 
+        RowBox[{
+        "*", " ", "\:0420\:043e\:0439", " ", 
+         "\:0447\:0430\:0441\:0442\:0438\:0446"}]}], " ", "****)"}],
+      FontFamily->"Times New Roman",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0., 0., 1.]], "\n", " ", 
+     RowBox[{
+      RowBox[{"\"\<loc\>\"", "\[Rule]", "\[Ellipsis]"}], " ", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "\:043c\:0435\:0441\:0442\:043e\:043f\:043e\:043b\:043e\:0436\:0435\
+\:043d\:0438\:044f", " ", "\:0447\:0430\:0441\:0442\:0438\:0446"}], " ", 
+        "*)"}],
+       FontFamily->"Times New Roman",
+       FontColor->RGBColor[0., 0., 1.]], ",", "\n", " ", 
+      RowBox[{"\"\<vel\>\"", "\[Rule]", "\[Ellipsis]"}], " ", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "\:0441\:043a\:043e\:0440\:043e\:0441\:0442\:0438", " ", 
+         "\:0447\:0430\:0441\:0442\:0438\:0446"}], " ", "*)"}],
+       FontFamily->"Times New Roman",
+       FontColor->RGBColor[0., 0., 1.]], ",", "\n", " ", 
+      RowBox[{"\"\<\[Mu]\>\"", "\[Rule]", "\[Ellipsis]"}], " ", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "\:0443\:0440\:043e\:0432\:043d\:0438", " ", 
+         "\:043f\:0440\:043e\:0431\:043b\:0435\:043c", " ", 
+         "\:0447\:0430\:0441\:0442\:0438\:0446"}], " ", "*)"}],
+       FontFamily->"Times New Roman",
+       FontColor->RGBColor[0., 0., 1.]], ",", "\n", " ", 
+      RowBox[{"\"\<best\>\"", "\[Rule]", " ", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{
+         RowBox[{"\"\<\[Mu]\>\"", "\[Rule]", "\[Ellipsis]"}], ",", 
+         RowBox[{"\"\<loc\>\"", "\[Rule]", "\[Ellipsis]"}]}], 
+        "\[RightAssociation]"}]}], " ", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "\:043b\:0443\:0447\:0448\:0438\:0435", " ", 
+          "\:043c\:0435\:0441\:0442\:0430"}], ",", " ", 
+         RowBox[{
+         "\:043d\:0430\:0439\:0434\:0435\:043d\:044b\:0435", " ", 
+          "\:043a\:0430\:0436\:0434\:043e\:0439", " ", "\:0438\:0437", " ", 
+          "\:0447\:0430\:0441\:0442\:0438\:0446"}]}], " ", "*)"}],
+       FontFamily->"Times New Roman",
+       FontColor->RGBColor[0., 0., 1.]], ",", "\n", " ", 
+      RowBox[{"\"\<theBest\>\"", "\[Rule]", " ", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{
+         RowBox[{"\"\<\[Mu]\>\"", "\[Rule]", "\[Ellipsis]"}], ",", 
+         RowBox[{"\"\<loc\>\"", "\[Rule]", "\[Ellipsis]"}]}], 
+        "\[RightAssociation]"}]}], " ", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "\:0442\:0435\:043a\:0443\:0449\:0435\:0435", " ", 
+         "\:043f\:0440\:0438\:0431\:043b\:0438\:0436\:0435\:043d\:0438\:0435",
+          " ", "\:044d\:043a\:0441\:0442\:0440\:0435\:043c\:0443\:043c\:0430"}\
+], " ", "*)"}],
+       FontFamily->"Times New Roman",
+       FontColor->RGBColor[0., 0., 1.]], ",", "\n", " ", 
+      RowBox[{"\"\<history\>\"", "\[Rule]", "\[Ellipsis]"}], " ", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "\:043b\:0443\:0447\:0448\:0438\:0435", " ", 
+          "\:043c\:0435\:0441\:0442\:0430"}], ",", " ", 
+         RowBox[{
+         "\:043d\:0430\:0439\:0434\:0435\:043d\:043d\:044b\:0435", " ", 
+          "\:0440\:043e\:0435\:043c"}]}], " ", "*)"}],
+       FontFamily->"Times New Roman",
+       FontColor->RGBColor[0., 0., 1.]], ",", "\n", " ", 
+      RowBox[{"\"\<param\>\"", "\[Rule]", " ", 
+       RowBox[{"Association", "[", " ", 
+        StyleBox[
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{
+           "**", " ", 
+            "\:043f\:0430\:0440\:0430\:043c\:0435\:0442\:0440\:044b"}], " ", 
+           "\:0430\:043b\:0433\:043e\:0440\:0438\:0442\:043c\:0430"}], " ", 
+          "***)"}],
+         FontFamily->"Times New Roman",
+         FontWeight->"Bold",
+         FontColor->RGBColor[0., 0., 1.]], "\n", "   ", 
+        RowBox[{
+         RowBox[{"\"\<swarmSize\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<swarmSize\>\""}]}], ",", " ", "\n",
+          "   ", 
+         RowBox[{"\"\<familySize\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<familySize\>\""}]}], ",", "\n", 
+         "   ", 
+         RowBox[{"\"\<\[Alpha]\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<\[Alpha]\>\""}]}], ",", "\n", 
+         "   ", 
+         RowBox[{"\"\<\[Beta]\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<\[Beta]\>\""}]}], ",", "\n", "   ", 
+         RowBox[{"\"\<\[Gamma]\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<\[Gamma]\>\""}]}], ",", "\n", 
+         "   ", 
+         RowBox[{"\"\<\[Delta]\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<\[Delta]\>\""}]}], ",", "\n", 
+         "   ", 
+         RowBox[{"\"\<\[CurlyEpsilon]\>\"", "\[Rule]", "\[ThinSpace]", 
+          RowBox[{"OptionValue", "@", "\"\<\[CurlyEpsilon]\>\""}]}]}], "\n", 
+        "]"}]}]}], "]"}]}], ";"}], 
+  StyleBox["\n",
+   FontSize->12,
+   FontWeight->"Bold"], 
+  StyleBox[
+   RowBox[{"(*", "***************************************)"}],
+   FontSize->12,
+   FontWeight->"Bold",
+   FontColor->RGBColor[0, 0, 1]], 
+  StyleBox["\n",
+   FontSize->12,
+   FontWeight->"Bold",
+   FontColor->RGBColor[0, 0, 1]], 
+  StyleBox[
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"**", " ", "\:0437\:043d\:0430\:0447\:0435\:043d\:0438\:044f"}], 
+     " ", "\:043f\:0430\:0440\:0430\:043c\:0435\:0442\:0440\:043e\:0432", " ",
+      "\:043f\:043e", " ", 
+     "\:0443\:043c\:043e\:043b\:0447\:0430\:043d\:0438\:044e"}], " ", "***)"}],
+   FontSize->12,
+   FontWeight->"Bold",
+   FontColor->RGBColor[0, 0, 1]]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", 
+    StyleBox["kmSwarm",
+     FontWeight->"Bold"], "]"}], " ", "=", " ", 
+   RowBox[{"{", "\n", "   ", 
+    RowBox[{
+     RowBox[{"\"\<swarmSize\>\"", "\[Rule]", "\[Ellipsis]"}], " ", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "\:0440\:0430\:0437\:043c\:0435\:0440", " ", "\:0440\:043e\:044f"}], 
+       " ", "*)"}],
+      FontFamily->"Times New Roman",
+      FontColor->RGBColor[0., 0., 1.]], ",", " ", "\n", "   ", 
+     RowBox[{"\"\<familySize\>\"", "\[Rule]", "\[Ellipsis]"}], " ", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "\:043a\:043e\:043b\:0438\:0447\:0435\:0441\:0442\:0432\:043e", " ", 
+        "\:0438\:043d\:0444\:043e\:0440\:043c\:0430\:0442\:043e\:0440\:043e\
+\:0432"}], " ", "*)"}],
+      FontFamily->"Times New Roman",
+      FontColor->RGBColor[0., 0., 1.]], ",", "\n", "   ", 
+     RowBox[{"\"\<\[Alpha]\>\"", "\[Rule]", " ", "0.8"}], ",", " ", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "\:0434\:043e\:043b\:044f", " ", 
+        "\:0441\:043e\:0431\:0441\:0442\:0432\:0435\:043d\:043d\:043e\:0439", 
+        " ", "\:0441\:043a\:043e\:0440\:043e\:0441\:0442\:0438"}], " ", "*)"}],
+      FontFamily->"Times New Roman",
+      FontColor->RGBColor[0., 0., 1.]], "\n", "   ", 
+     RowBox[{"\"\<\[Beta]\>\"", "\[Rule]", " ", "0.3"}], ",", " ", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+        "\:0434\:043e\:043b\:044f", " ", 
+         "\:043b\:0443\:0447\:0448\:0435\:0433\:043e", " ", 
+         "\:043f\:043e\:043b\:043e\:0436\:0435\:043d\:0438\:044f"}], ",", " ", 
+        RowBox[{
+        "\:043d\:0430\:0439\:0434\:0435\:043d\:043e\:0433\:043e", " ", 
+         "\:0441\:0430\:043c\:043e\:0439", " ", 
+         "\:0447\:0430\:0441\:0442\:0438\:0446\:0435\:0439"}]}], " ", "*)"}],
+      FontFamily->"Times New Roman",
+      FontColor->RGBColor[0., 0., 1.]], "\n", "   ", 
+     RowBox[{"\"\<\[Gamma]\>\"", "\[Rule]", " ", "0.1"}], ",", " ", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+        "\:0434\:043e\:043b\:044f", " ", 
+         "\:043b\:0443\:0447\:0448\:0435\:0433\:043e", " ", 
+         "\:043f\:043e\:043b\:043e\:0436\:0435\:043d\:0438\:044f"}], ",", " ", 
+        RowBox[{
+        "\:043d\:0430\:0439\:0434\:0435\:043d\:043e\:0433\:043e", " ", 
+         "\:0438\:043d\:0444\:043e\:0440\:043c\:0430\:0442\:043e\:0440\:0430\
+\:043c\:0438", " ", "\:0447\:0430\:0441\:0442\:0438\:0446\:0435\:0439"}]}], 
+       " ", "*)"}],
+      FontFamily->"Times New Roman",
+      FontColor->RGBColor[0., 0., 1.]], "\n", "   ", 
+     RowBox[{"\"\<\[Delta]\>\"", "\[Rule]", " ", "0.01"}], ",", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "\:0434\:043e\:043b\:044f", " ", 
+        "\:0433\:043b\:043e\:0431\:0430\:043b\:044c\:043d\:043e", " ", 
+        "\:043b\:0443\:0447\:0448\:0435\:0433\:043e", " ", 
+        "\:043f\:043e\:043b\:043e\:0436\:0435\:043d\:0438\:044f"}], " ", 
+       "*)"}],
+      FontFamily->"Times New Roman",
+      FontColor->RGBColor[0., 0., 1.]], "\n", "   ", 
+     RowBox[{"\"\<\[CurlyEpsilon]\>\"", "\[Rule]", " ", "1."}]}], "   ", 
+    StyleBox[
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "\:043a\:0430\:043a", " ", "\:0431\:044b\:0441\:0442\:0440\:043e", " ", 
+       "\:0434\:0432\:0438\:0436\:0435\:0442\:0441\:044f", " ", 
+       "\:0447\:0430\:0441\:0442\:0438\:0446\:0430"}], " ", "*)"}],
+     FontFamily->"Times New Roman",
+     FontColor->RGBColor[0., 0., 1.]], "\n", "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8632047187576127`*^9, 
+  3.8632047187596893`*^9}},ExpressionUUID->"d8c54509-7ee2-4d2e-a558-\
+17445ee0149e"]
+}, Open  ]]
+},
+WindowSize->{1141.2, 574.8},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"0b331dc2-5b09-4032-8a76-a13c236897d5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1636, 58, 78, "Input",ExpressionUUID->"a897d763-68d7-46bc-9d51-8dea6b4ceb65"],
+Cell[CellGroupData[{
+Cell[2219, 82, 333, 10, 67, "Section",ExpressionUUID->"4ff530ed-9bde-4c9b-a764-20ae4b310fee"],
+Cell[2555, 94, 11077, 274, 619, "Input",ExpressionUUID->"d8c54509-7ee2-4d2e-a558-17445ee0149e"]
+}, Open  ]]
+}
+]
+*)
+
