@@ -1,0 +1,45 @@
+[
+    {
+        "id": 1075934151,
+        "user_notes": [
+            {
+                "id": "0cf1ce99-d01c-4701-b9b6-569d5b9184ed",
+                "title": "1",
+                "text": "1"
+            },
+            {
+                "title": "1",
+                "text": "123213",
+                "id": "a44f3b0e-2db5-4986-baff-bddfc3a34af9"
+            }
+        ],
+        "time_tables": [
+            {
+                "title": "3 курс, 5 группа",
+                "course": "3",
+                "group": "5"
+            },
+            {
+                "title": "1 курс, 6 группа",
+                "course": "1",
+                "group": "6"
+            }
+        ]
+    },
+    {
+        "id": 541180031,
+        "user_notes": [
+            {
+                "title": "Я",
+                "text": "Тут",
+                "id": "eae28125-6ca1-4257-b315-410875f89221"
+            },
+            {
+                "title": "Овиччпв",
+                "text": "Вочтрв",
+                "id": "23329b3d-8de2-4bbc-8bf2-3845f3e2327e"
+            }
+        ],
+        "time_tables": []
+    }
+]
